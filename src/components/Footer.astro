@@ -1,0 +1,52 @@
+---
+import { CONTACT_HREF, NAV_LINKS, SITE_TITLE, SOCIAL_LINKS } from '../consts';
+import { url } from '../lib/url';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-border">
+  <div class="container-page py-16 md:py-24">
+    <p class="text-display max-w-5xl">
+      Think. Design. Build.<br />
+      <span class="text-muted">Ship. Grow.</span>
+    </p>
+
+    <div class="mt-16 grid gap-10 sm:grid-cols-3">
+      <div>
+        <h2 class="mb-4 text-sm font-semibold text-muted">Site</h2>
+        <ul class="space-y-2">
+          <li><a href={url('/')} class="hover:text-muted">Home</a></li>
+          {
+            NAV_LINKS.map(({ href, label }) => (
+              <li>
+                <a href={url(href)} class="hover:text-muted">{label}</a>
+              </li>
+            ))
+          }
+          <li><a href={CONTACT_HREF} class="hover:text-muted">Get in touch</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="mb-4 text-sm font-semibold text-muted">Social</h2>
+        <ul class="space-y-2">
+          {
+            SOCIAL_LINKS.map(({ href, label }) => (
+              <li>
+                <a href={href} class="hover:text-muted">{label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h2 class="mb-4 text-sm font-semibold text-muted">Studio</h2>
+        <p class="text-muted">Lorem ipsum dolor sit amet,<br />consectetur adipiscing elit.</p>
+      </div>
+    </div>
+
+    <p class="mt-16 border-t border-border pt-6 text-sm text-muted">
+      &copy; {year} {SITE_TITLE} — Lorem ipsum digital product studio
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,20 @@
+---
+/** Two-column section: heading on the left, content on the right, with a top divider. */
+import SplitHeading from './SplitHeading.astro';
+
+interface Props {
+  muted: string;
+  bright: string;
+}
+
+const { muted, bright } = Astro.props;
+---
+
+<section class="border-t border-border">
+  <div class="container-page grid gap-8 py-14 md:grid-cols-2 md:py-20">
+    <SplitHeading muted={muted} bright={bright} />
+    <div class="max-w-xl text-lg leading-relaxed text-muted">
+      <slot />
+    </div>
+  </div>
+</section>

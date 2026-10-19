@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@import '@fontsource-variable/inter';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: #171717;
+  --color-bg-subtle: #212121;
+  --color-fg: #f3f3f3;
+  --color-muted: #a3a3a3;
+  --color-border: #2e2e2e;
+
+  /* Selected-work tile colors */
+  --color-tile-sand: #e6e2dc;
+  --color-tile-teal: #3f8a76;
+  --color-tile-orange: #e0703f;
+  --color-tile-rose: #e3ac9b;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply bg-bg text-fg font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-fg text-bg;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-fg;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-[90rem] px-5 md:px-10;
+}
+
+@utility text-display {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  @apply leading-[0.95] font-bold tracking-tighter;
+}
+
+@utility text-headline {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  @apply leading-[1.05] font-bold tracking-tight;
+}
+
+@utility text-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  @apply leading-tight font-bold tracking-tight;
+}

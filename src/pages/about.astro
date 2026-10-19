@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { getCollection } from 'astro:content';
+
+const values = (await getCollection('values')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="About" description="Who we are, what we value, and how we work.">
+  <section class="container-page pt-16 pb-20 md:pt-24 md:pb-28">
+    <h1 class="text-headline max-w-4xl">
+      A small studio with big lorem ipsum.
+      <span class="block text-muted">Dolor sit amet, together.</span>
+    </h1>
+  </section>
+
+  <section aria-hidden="true" class="container-page pb-20">
+    <div class="grid h-64 grid-cols-3 gap-4 md:h-96">
+      <div class="col-span-2 rounded-3xl bg-tile-teal"></div>
+      <div class="rounded-3xl bg-tile-orange"></div>
+    </div>
+  </section>
+
+  <Section muted="Who we are." bright="An exquisite lorem ipsum.">
+    <p>
+      We are not pixel pushers or code monkeys. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore. There's a purpose to everything we do. We're just a bunch of curious people aspiring
+      to do incredible things together and have some fun along the way.
+    </p>
+  </Section>
+
+  <Section muted="Core values." bright="Expressed in everything.">
+    <ul class="divide-y divide-border">
+      {
+        values.map(({ data }) => (
+          <li class="py-6 first:pt-0 last:pb-0">
+            <h3 class="font-semibold text-fg">{data.title}</h3>
+            <p class="mt-1">{data.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
+
+  <Section muted="How we work." bright="Lorem, ipsum, repeat.">
+    <ol class="space-y-6">
+      {
+        ['Discover', 'Design', 'Build', 'Ship'].map((step, i) => (
+          <li class="flex gap-4">
+            <span class="font-semibold text-fg tabular-nums">0{i + 1}</span>
+            <span>
+              <strong class="block text-fg">{step}.</strong>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <CallToAction />
+</BaseLayout>

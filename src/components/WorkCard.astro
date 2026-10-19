@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  /** Tailwind background class for the tile. */
+  tone: string;
+  /** Use dark text on a light tile. */
+  light?: boolean;
+}
+
+const { title, summary, tone, light = false } = Astro.props;
+---
+
+<article class:list={['flex min-h-[28rem] flex-col justify-between p-8', tone, light ? 'text-bg' : 'text-fg']}>
+  <p class="text-sm font-semibold tracking-widest uppercase opacity-70">Lorem award 2026</p>
+  <div>
+    <h3 class="text-title">{title}</h3>
+    <p class="mt-2 opacity-80">{summary}</p>
+  </div>
+</article>
