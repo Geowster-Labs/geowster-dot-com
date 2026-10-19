@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SplitHeading from '../components/SplitHeading.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Services" description="Lorem ipsum services: strategy, design, and development.">
+  <section class="container-page pt-16 pb-20 md:pt-24 md:pb-28">
+    <h1 class="text-headline max-w-4xl">
+      Custom digital products built to grow with your business.
+      <span class="block text-muted">Lorem-led. Ipsum-driven.</span>
+    </h1>
+  </section>
+
+  <section class="container-page pb-12">
+    <SplitHeading muted="Our services." bright="The full list!" />
+    <p class="mt-4 max-w-xl text-lg leading-relaxed text-muted">
+      Each delivery moves through cycles of lorem, ipsum and dolor. It is the blend of all these elements that creates
+      interfaces that people will love.
+    </p>
+  </section>
+
+  <section aria-label="Service list" class="border-t border-border">
+    <div class="container-page grid md:grid-cols-3">
+      {
+        services.map(({ data }, i) => (
+          <div
+            class:list={[
+              'py-10 md:py-14',
+              i > 0 && 'border-t border-border md:border-t-0 md:border-l md:pl-10',
+            ]}
+          >
+            <h2 class="text-title">{data.title}</h2>
+            {data.groups.map((group) => (
+              <div class="mt-8">
+                <h3 class="font-semibold">{group.name}</h3>
+                <ul class="mt-3 space-y-2 text-muted">
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction />
+</BaseLayout>

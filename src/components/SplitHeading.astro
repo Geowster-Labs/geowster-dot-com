@@ -1,0 +1,16 @@
+---
+/** Two-tone heading: a muted lead phrase followed by a bright phrase. */
+interface Props {
+  muted: string;
+  bright: string;
+  as?: 'h1' | 'h2' | 'h3';
+  class?: string;
+}
+
+const { muted, bright, as: Tag = 'h2', class: className = 'text-title' } = Astro.props;
+---
+
+<Tag class={className}>
+  <span class="block text-muted">{muted}</span>
+  <span class="block">{bright}</span>
+</Tag>

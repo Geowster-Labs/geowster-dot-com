@@ -1,0 +1,18 @@
+---
+import { CONTACT_HREF } from '../consts';
+import SplitHeading from './SplitHeading.astro';
+---
+
+<section class="container-page mt-24">
+  <div
+    class="flex flex-col items-start gap-8 rounded-3xl bg-bg-subtle p-8 md:flex-row md:items-end md:justify-between md:p-14"
+  >
+    <SplitHeading muted="Have an idea?" bright="Lorem ipsum dolor sit." class="text-headline" />
+    <a
+      href={CONTACT_HREF}
+      class="shrink-0 rounded-xl bg-fg px-6 py-4 font-semibold text-bg transition-opacity hover:opacity-85"
+    >
+      Get in touch
+    </a>
+  </div>
+</section>

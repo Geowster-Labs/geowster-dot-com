@@ -1,0 +1,32 @@
+[
+  {
+    "id": "strategy",
+    "title": "Strategy",
+    "order": 1,
+    "groups": [
+      { "name": "Discovery", "items": ["Lorem auditing", "Ipsum and data analysis", "Dolor and personas", "Sit amet research"] },
+      { "name": "Product Definition", "items": ["Consectetur strategy", "Proof of concept", "Minimum viable product", "Adipiscing strategy"] },
+      { "name": "Operations", "items": ["Elit sed planning", "Do eiusmod tempor", "Incididunt workshops"] }
+    ]
+  },
+  {
+    "id": "design",
+    "title": "Design",
+    "order": 2,
+    "groups": [
+      { "name": "Interface", "items": ["User experience lorem", "User experience design", "User interface design", "Design systems", "User testing"] },
+      { "name": "Brand", "items": ["Brand strategy", "Brand identity", "Logo design", "Brand guidelines"] },
+      { "name": "Multimedia", "items": ["Motion ipsum", "Illustration dolor", "Video sit amet"] }
+    ]
+  },
+  {
+    "id": "development",
+    "title": "Development",
+    "order": 3,
+    "groups": [
+      { "name": "Front-end", "items": ["Astro", "React", "TypeScript", "Tailwind CSS"] },
+      { "name": "Back-end", "items": ["Node", "Python", ".NET"] },
+      { "name": "DevOps", "items": ["GitHub Actions", "Cloud hosting", "Monitoring"] }
+    ]
+  }
+]

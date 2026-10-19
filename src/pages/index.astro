@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HighlightCard from '../components/HighlightCard.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Section from '../components/Section.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { getCollection } from 'astro:content';
+import { url } from '../lib/url';
+
+const highlights = [
+  { title: 'Lorem Ipsum. A unified platform for dolor sit amet.', label: 'From our projects', tone: 'bg-tile-sand' },
+  { title: 'Consectetur. Unique design for adipiscing elit.', label: 'From our projects', tone: 'bg-tile-teal' },
+  { title: 'How Tempor got 181% more visitors with a redesign.', label: 'From our notes', tone: 'bg-tile-orange' },
+  { title: 'Incididunt. Streamlining labore et dolore.', label: 'From our projects', tone: 'bg-tile-rose' },
+];
+
+const work = [
+  { title: 'Lorem', summary: 'Ipsum dolor sit amet, consectetur.', tone: 'bg-tile-sand', light: true },
+  { title: 'Ipsum', summary: 'Sed do eiusmod tempor incididunt.', tone: 'bg-tile-teal' },
+  { title: 'Dolor', summary: 'Ut labore et dolore magna aliqua.', tone: 'bg-tile-orange' },
+  { title: 'Sit Amet', summary: 'Quis nostrud exercitation ullamco.', tone: 'bg-tile-rose', light: true },
+];
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <section class="container-page pt-16 pb-20 md:pt-24 md:pb-28">
+    <h1 class="text-display">
+      Think. Design.<br />
+      Build. Ship.<br />
+      <span class="text-muted">Grow.</span>
+    </h1>
+  </section>
+
+  <section aria-label="Highlights" class="container-page">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {highlights.map((h) => <HighlightCard {...h} href={url('/services')} />)}
+    </div>
+  </section>
+
+  <section aria-labelledby="work-heading" class="container-page mt-12">
+    <h2 id="work-heading" class="sr-only">Selected work</h2>
+    <div class="grid overflow-hidden rounded-3xl sm:grid-cols-2 lg:grid-cols-4">
+      {work.map((w) => <WorkCard {...w} />)}
+    </div>
+  </section>
+
+  <div class="mt-24">
+    <Section muted="Our services." bright="Lorem ipsum, end to end.">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+      </p>
+      <ul class="mt-8 divide-y divide-border border-y border-border">
+        {
+          services.map(({ data }) => (
+            <li class="flex items-center justify-between py-4 text-fg">
+              <span class="text-xl font-semibold">{data.title}</span>
+              <span class="text-sm text-muted">{data.groups.map((g) => g.name).join(' · ')}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <a href={url('/services')} class="mt-8 inline-block font-semibold text-fg underline underline-offset-4">
+        See all services
+      </a>
+    </Section>
+
+    <Section muted="About us." bright="Dolor sit amet consectetur.">
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <a href={url('/about')} class="mt-8 inline-block font-semibold text-fg underline underline-offset-4">
+        More about us
+      </a>
+    </Section>
+  </div>
+
+  <section class="border-t border-border">
+    <div class="container-page grid gap-10 py-14 md:grid-cols-3 md:py-20">
+      {
+        [
+          ['12+', 'Lorem projects shipped'],
+          ['8', 'Ipsum industries served'],
+          ['100%', 'Dolor sit amet'],
+        ].map(([stat, label]) => (
+          <div>
+            <p class="text-headline">{stat}</p>
+            <p class="mt-2 text-muted">{label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction />
+</BaseLayout>

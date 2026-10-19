@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { NAV_LINKS } from '../consts';
+import { url } from '../lib/url';
+---
+
+<BaseLayout title="Not found" noindex>
+  <section class="container-page pt-16 pb-20 md:pt-24">
+    <h1 class="text-display">
+      404.<br />
+      <span class="text-muted">Lorem not found.</span>
+    </h1>
+    <p class="mt-8 max-w-xl text-lg text-muted">The page you're looking for doesn't exist. Try one of these instead:</p>
+    <ul class="mt-6 flex flex-wrap gap-3">
+      {
+        [{ href: '/', label: 'Home' }, ...NAV_LINKS].map(({ href, label }) => (
+          <li>
+            <a href={url(href)} class="inline-block rounded-xl border border-border px-5 py-3 font-semibold hover:bg-bg-subtle">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
